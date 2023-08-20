@@ -67,9 +67,7 @@ class GamesFactory {
                 this.games[game.id].connections.indexOf(socket),
                 1
             )
-            let finished = game.winner != ''
-            let noWatchers = !game.connections.length
-            return finished && noWatchers
+            return !game.connections.length
         })
         disgames.forEach(game => {
             delete this.games[game.id]

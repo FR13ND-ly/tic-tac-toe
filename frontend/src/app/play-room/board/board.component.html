@@ -1,0 +1,11 @@
+<div class="board">
+  <div class="row" *ngFor="let line of game.board; let x = index">
+    <app-placeholder
+      [boardSize]="line.length"
+      (move)="onMove(x, y)"
+      [value]="item"
+      [isPlayerTurn]="game.turn == playerService.getUserSymbol(game)"
+      *ngFor="let item of line; let y = index"
+    />
+  </div>
+</div>

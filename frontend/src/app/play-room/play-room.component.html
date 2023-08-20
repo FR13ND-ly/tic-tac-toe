@@ -1,0 +1,10 @@
+<ng-container *ngIf="game$ | async as game">
+  <play-room-header [game]="game" />
+  <div class="content">
+    <div class="playzone">
+      <play-room-overlay [game]="game" />
+      <app-board [game]="game"></app-board>
+    </div>
+    <game-info [game]="game" />
+  </div>
+</ng-container>

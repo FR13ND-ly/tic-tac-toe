@@ -1,0 +1,40 @@
+.overlay {
+    inset: 0;
+    position: absolute;
+    background-color: hsla(0, 0%, 0%, .8);
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #fff;
+    h1 {
+        font-size: 4rem;
+    }
+    h2 {
+        font-size: 2rem;
+        cursor: pointer;
+        border-bottom: 5px dotted #ccc;
+        transition: .2s;
+        &:hover {
+            border-color: rgb(127, 127, 243);
+        }
+        &:active {
+            border-color: blue;
+        }
+    }
+    p {
+        margin-top: -1rem;
+        font-weight: bold;
+        color: rgb(35, 101, 242);
+    }
+    @media (max-width: 600px) {
+        h1 {
+            font-size: 2rem;
+        }
+        h2 {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+    }
+}

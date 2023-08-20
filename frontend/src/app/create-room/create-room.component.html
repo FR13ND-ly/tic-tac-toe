@@ -1,0 +1,39 @@
+<img class="bg" src="/assets/bg.png" />
+<section>
+  <div class="info">
+    <h1>Create Room</h1>
+    <input
+      placeholder="Enter your name"
+      (input)="onInputName(nameInp.value)"
+      [(ngModel)]="game.user1.name"
+      #nameInp
+    />
+    <input
+      placeholder="Streak length"
+      type="number"
+      [(ngModel)]="game.winLength"
+      min="3"
+    />
+    <div class="wrapper">
+      <div class="form">
+        <div class="checkbox" [class.disabled]="game.winLength > 3">
+          <label>
+            <input type="checkbox" [(ngModel)]="game.extendable" disabled />
+            <span class="checkbox"></span>
+          </label>
+        </div>
+        <span>Extendable</span>
+      </div>
+      <div class="form">
+        <select [(ngModel)]="game.firstPlayer">
+          <option value="X">Tic</option>
+          <option value="O">Tac</option>
+          <option value="r" selected>Random</option>
+          <option selected disabled value="" hidden>Who starts firsts?</option>
+        </select>
+      </div>
+    </div>
+    <button (click)="onCreateGame()">Create</button>
+    <button routerLink="/">Back to Menu</button>
+  </div>
+</section>

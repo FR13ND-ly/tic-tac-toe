@@ -1,0 +1,26 @@
+<img class="bg" src="/assets/bg.png" />
+<section>
+  <div class="info">
+    <h1>Tic-Tac-Toe</h1>
+    <button *ngIf="start" (click)="start = false">Join room</button>
+    <ng-container *ngIf="!start && !continue">
+      <input
+        [(ngModel)]="data.gameId"
+        type="text"
+        placeholder="Enter room code"
+      />
+      <button (click)="onContinue()">Continue</button>
+    </ng-container>
+    <ng-container *ngIf="continue">
+      <input
+        [(ngModel)]="data.user.name"
+        type="text"
+        placeholder="Enter your name"
+        #nameInp
+        (input)="onInputName(nameInp.value)"
+      />
+      <button (click)="onEnter()">Enter</button>
+    </ng-container>
+    <button routerLink="/create">Create room</button>
+  </div>
+</section>

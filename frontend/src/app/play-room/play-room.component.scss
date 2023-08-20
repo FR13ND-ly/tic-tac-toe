@@ -1,0 +1,12 @@
+.content {
+    display: grid;
+    grid-template-columns: 70% auto;
+    @media (max-width: 600px) {    
+        grid-template-columns: 1fr;
+        grid-template-rows: 70% auto;
+    }
+}
+
+.playzone {
+    position: relative;
+}

@@ -1,0 +1,7 @@
+<section (click)="onMove()" [class.your-turn]="isPlayerTurn">
+  <img
+    class="placeholder-img"
+    src="/assets/{{ value }}.png"
+    *ngIf="value != ''"
+  />
+</section>

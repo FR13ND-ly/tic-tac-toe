@@ -1,0 +1,30 @@
+.game-info {
+    display: flex;
+    flex-direction: column;
+    padding-left: 4rem;
+    padding-top: 2rem;
+    box-sizing: border-box;
+    background-color: #ccc;   
+    position: relative;
+    height: 100%;
+    h1 {
+        font-size: 2rem;
+        line-height: 1;
+    }
+    @media (max-width: 600px) {
+        padding-bottom: 2rem;
+    }
+}
+
+.turn {
+    position: absolute;
+    right: 2rem;
+    top: 2rem;
+    background-color: #000;
+    color: #fff;
+    padding: .5rem;
+}
+
+.you {
+    color: rgb(35, 101, 242)
+}

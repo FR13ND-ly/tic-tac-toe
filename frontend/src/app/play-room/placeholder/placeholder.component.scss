@@ -1,0 +1,31 @@
+section {
+    --size: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    aspect-ratio: 1;
+    height: var(--size);
+    border: 4px solid #999;
+    border-radius: 0.5rem;
+    transition: .2s ;
+    padding: .5rem;
+    box-sizing: border-box;
+    transition: .2s;
+    max-height: 100%;
+    &:empty {
+        cursor: pointer;
+    }
+    img {
+        width: 100%;
+        user-select: none;
+        // filter: invert(100%);
+    }
+    &:active:not(:empty) {
+        background-color: red;
+    }
+}
+
+.your-turn {
+    border-color: rgb(42, 226, 42);
+}

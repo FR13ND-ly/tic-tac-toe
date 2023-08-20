@@ -1,0 +1,17 @@
+<div class="overlay" *ngIf="state">
+  <ng-container *ngIf="state == 'waiting'">
+    <h2 (click)="copyToClipboard()">{{ invitationLink }}</h2>
+    <p>Waiting for another player...</p>
+  </ng-container>
+  <ng-container *ngIf="state == 'X won'">
+    <h1>{{ game.user1.name }} won!</h1>
+    <p>X got the win</p>
+  </ng-container>
+  <ng-container *ngIf="state == 'O won'">
+    <h1>{{ game.user2.name }} won!</h1>
+    <p>O got the win</p>
+  </ng-container>
+  <ng-container *ngIf="state == 'draw'">
+    <h1>Draw</h1>
+  </ng-container>
+</div>

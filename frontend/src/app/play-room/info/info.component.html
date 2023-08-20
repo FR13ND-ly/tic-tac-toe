@@ -1,0 +1,22 @@
+<section class="game-info">
+  <span class="turn">Turn: {{ game.turn }}</span>
+  <h1>Game Info</h1>
+  <p><b>ID: </b>{{ game.id }}</p>
+  <p>
+    <b>Player X</b>: {{ game.user1.name }}
+    <span class="you" *ngIf="game.user1.id == playerService.getOrCreateId()"
+      >(You)</span
+    >
+  </p>
+  <p>
+    <b>Player O</b>:
+    {{ game.user2.id ? game.user2.name : "Waiting to connect" }}
+    <span class="you" *ngIf="game.user2.id == playerService.getOrCreateId()"
+      >(You)</span
+    >
+  </p>
+  <p><b>Win Streak Length:</b> {{ game.winLength }}</p>
+  <p><b>Move count</b>: {{ game.moveNumber }}</p>
+  <p *ngIf="game.extendable">Extendable</p>
+  <s *ngIf="!game.extendable">Extendable</s>
+</section>

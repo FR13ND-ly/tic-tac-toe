@@ -1,4 +1,5 @@
-import { Component, Input, OnInit, OnChanges } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { Game } from 'src/app/core/models/game.';
 
 @Component({
@@ -7,6 +8,8 @@ import { Game } from 'src/app/core/models/game.';
   styleUrls: ['./overlay.component.scss']
 })
 export class OverlayComponent implements OnInit, OnChanges {
+
+  router = inject(Router)
 
   @Input() game! : Game
   invitationLink: string = ''
@@ -18,7 +21,8 @@ export class OverlayComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    if (this.game.user2.id) this.state = ''
+    if (!this.game.user2.id) this.state = 'waiting'
+    else this.state = ''
     if (this.game.winner == 'X') this.state = 'X won'
     if (this.game.winner == 'O') this.state = 'O won'
     if (this.game.winner == 'draw') this.state = 'draw'
@@ -26,5 +30,9 @@ export class OverlayComponent implements OnInit, OnChanges {
   
   copyToClipboard() {
     navigator.clipboard.writeText(this.invitationLink)
+  }
+
+  onNextGame() {
+    this.router.navigate(['join', this.game.nextGame])
   }
 }

@@ -8,6 +8,7 @@ export interface Game {
     turn: string;
     firstPlayer: string;
     winner: string;
+    nextGame: string;
     winLength: number;
     extendable: boolean;
     moveNumber: number;

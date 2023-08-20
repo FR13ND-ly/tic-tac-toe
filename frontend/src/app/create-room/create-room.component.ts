@@ -35,6 +35,7 @@ export class CreateRoomComponent {
     winLength : 3,
     extendable: false,
     moveNumber: 0,
+    nextGame: '',
     connections: [],
     board : [
       ['', '', ''],

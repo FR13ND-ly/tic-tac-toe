@@ -9,6 +9,7 @@ class GamesFactory {
     }
 
     sendGame(id) {
+        if (!this.games[id]) return
         this.games[id].connections.forEach(socket => {
             let game = {...this.games[id]}
             game.connections = null
@@ -37,7 +38,10 @@ class GamesFactory {
     
     join(data) {
         const game = this.games[data.gameId];
-        if (game['user2'].id == '' && game['user1'].id != data.user.id) {
+        if (game['user1'].id == '' && game['user2'].id != data.user.id) {
+            game['user1'] = data.user;
+        }
+        else if (game['user2'].id == '' && game['user1'].id != data.user.id) {
             game['user2'] = data.user;
         }
         this.games[game.id] = game;
@@ -52,6 +56,52 @@ class GamesFactory {
         const game = this.games[data.gameId];
         const board = new Board(game);
         this.games[data.gameId] = board.onMove(data.x, data.y)
+        if (this.games[data.gameId].winner != '') this.createNextGame(this.games[data.gameId])
+        this.sendGame(data.gameId)
+    }
+
+    createNextGame(game) {
+        let id = this.getGameId()
+        let newGame = {
+            id,
+            user1: {
+                id: '',
+                name: ''
+            },
+            user2: {
+                id : '',
+                name: '',
+            },
+            turn : "",
+            firstPlayer : '',
+            winner: '',
+            winLength : game.winLength,
+            extendable: game.extendable,
+            moveNumber: 0,
+            nextGame: '',
+            connections: [],
+            board : [
+              ['', '', ''],
+              ['', '', ''],
+              ['', '', '']
+            ]
+        }
+        this.new(newGame)
+        this.games[game.id].nextGame = id
+        this.sendGame(game.id)
+    }
+
+    getGameId() {
+        var randLetter1 = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+        var randLetter2 = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+        var uniqid = randLetter1 + randLetter2 + Date.now().toString().slice(-4)
+        return uniqid;
+    }  
+
+    resign(data) {
+        const game = this.games[data.gameId]
+        game.winner = data.winner
+        this.createNextGame(game)
         this.sendGame(data.gameId)
     }
 
@@ -67,7 +117,9 @@ class GamesFactory {
                 this.games[game.id].connections.indexOf(socket),
                 1
             )
-            return !game.connections.length
+            let finished = game.winner != ''
+            let disconnected = !game.connections.length
+            return finished && disconnected
         })
         disgames.forEach(game => {
             delete this.games[game.id]

@@ -25,13 +25,16 @@ export class PlayRoomComponent {
   game$: Observable<Game> = this.route.params.pipe(
     switchMap((params : any)=> {
       if (this.route.snapshot.data['join']) this.join(params.id)
-      return this.gameService.getGame(params.id).pipe(
-        // tap((game : Game) => {
-        //   if (game == null) {
-        //     alert('Game not found')
-        //     this.router.navigate(['/'])
-        //   }
-        // })
+      return this.gameService.exists(params.id).pipe(
+        switchMap((exists : any) => {
+          if (!exists) {
+            alert("Game not found")
+            return this.router.navigate(['/'])
+          }
+          return this.gameService.getGame(params.id).pipe(
+            tap(console.log)
+          )
+        })
       )
     })
   )
@@ -51,9 +54,7 @@ export class PlayRoomComponent {
       }
       this.gameService.joinGame(data)
       this.location.replaceState(`/play/${gameId}`)
-    })
-    
+    })    
   }
-
   
 }

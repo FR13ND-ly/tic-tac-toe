@@ -44,6 +44,10 @@ export class GameService {
   exists(id : string) {
     return this.http.get(`${environment.api}/exists/${id}`) as Observable<boolean>
   }
+
+  resign(data: any) {
+    this.socket.emit('resign', data);
+  }
   
   move(data: any) {
     this.socket.emit('move', data);

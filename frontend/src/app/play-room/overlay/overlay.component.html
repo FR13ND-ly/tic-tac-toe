@@ -5,13 +5,14 @@
   </ng-container>
   <ng-container *ngIf="state == 'X won'">
     <h1>{{ game.user1.name }} won!</h1>
-    <p>X got the win</p>
+    <button (click)="onNextGame()">Next game</button>
   </ng-container>
   <ng-container *ngIf="state == 'O won'">
     <h1>{{ game.user2.name }} won!</h1>
-    <p>O got the win</p>
+    <button (click)="onNextGame()">Next game</button>
   </ng-container>
   <ng-container *ngIf="state == 'draw'">
     <h1>Draw</h1>
+    <button (click)="onNextGame()">Next game</button>
   </ng-container>
 </div>

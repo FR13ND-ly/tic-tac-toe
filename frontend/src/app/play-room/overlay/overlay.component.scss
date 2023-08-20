@@ -38,3 +38,12 @@
         }
     }
 }
+
+button {
+    background-color: #fff;
+    color: #000;
+    width: fit-content;
+    &:hover {
+        background-color: #e0e0e0;
+    }
+}

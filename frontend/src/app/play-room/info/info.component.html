@@ -19,4 +19,5 @@
   <p><b>Move count</b>: {{ game.moveNumber }}</p>
   <p *ngIf="game.extendable">Extendable</p>
   <s *ngIf="!game.extendable">Extendable</s>
+  <button class="button" (click)="onResign()">Resign</button>
 </section>

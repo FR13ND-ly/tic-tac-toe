@@ -29,6 +29,10 @@ io.on("connection", socket => {
         gameFactory.join(data);
     });
 
+    socket.on("resign", data => {
+        gameFactory.resign(data)
+    })
+
     socket.on("disconnect", () => {
         gameFactory.disconnect(socket)
     });

@@ -12,21 +12,23 @@ COPY frontend/ .
 
 RUN npm run build
 
-#backend
-WORKDIR /app/backend
+CMD ["node", "server.js"]
 
-COPY backend/package*.json ./
+# #backend
+# WORKDIR /app/backend
 
-RUN npm i
+# COPY backend/package*.json ./
 
-COPY backend/ .
+# RUN npm i
 
-WORKDIR /app
+# COPY backend/ .
 
-COPY start.sh /app/start.sh
+# WORKDIR /app
 
-RUN chmod +x /app/start.sh
+# COPY start.sh /app/start.sh
 
-EXPOSE 4200 5000
+# RUN chmod +x /app/start.sh
 
-CMD ["/app/start.sh"]
+# EXPOSE 4200 5000
+
+# CMD ["/app/start.sh"]
